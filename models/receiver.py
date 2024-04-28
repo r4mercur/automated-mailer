@@ -5,6 +5,7 @@ from datetime import datetime
 
 Base = declarative_base()
 
+
 class MailReceiver(Base):
     __tablename__ = 'mail_receiver'
 
