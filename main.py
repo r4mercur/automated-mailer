@@ -17,6 +17,12 @@ def intialize_db() -> Session:
     return session
 
 
+def add_receiver(session: Session, email: str, name: str, last_name: str) -> None:
+    receiver = MailReceiver(email, name, last_name)
+    session.add(receiver)
+    session.commit()
+
+
 def send_email(
     server: smtplib.SMTP, sender: str, receiver: MailReceiver, subject: str, body: str
 ) -> None:
@@ -40,6 +46,9 @@ def main():
 
     # Initialize the database
     session = intialize_db()
+
+    # Add a sample receiver
+    add_receiver(session, "example@gmail.com", "Example", "Example")
 
     # Get the SMTP server
     server = get_stmp_server()
